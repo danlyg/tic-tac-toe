@@ -1,15 +1,63 @@
 #board {
-  width: 31em;
+  margin-left: auto;
+  margin-right: auto;
+  width: 650px;
   height: 30em;
   position: relative;
   top: 30px;
-  left: 25%;
+  text-align: center;
 }
 
 .box {
-  width: 10em;
-  height: 10em;
-  border: 1px solid black;
+  width: 160px;
+  height: 160px;
+  border: 2px solid darkcyan;
   display: inline-block;
   margin-bottom: 4px;
+  border-radius: 50px;
+
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: lightcoral;
+}
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  color: slateblue;
+}
+
+.X {
+
+  background-color: palegreen;
+  text-align: center;
+  font-size: 100px;
+  font-family: fantasy;
+  line-height: 180px;
+
+}
+
+.O {
+  background-color: salmon;
+  text-align: center;
+  font-size: 100px;
+  font-family: fantasy;
+  line-height: 180px;
+}
+
+.buttonAlign{
+  text-align: center;
+}
+
+#reset{
+  height: 50px;
+  width: 150px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  border-radius: 20px;
+  color: antiquewhite;
+  background-color: darkslategrey;
 }

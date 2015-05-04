@@ -5,46 +5,45 @@ window.addEventListener('load', function (event) {
 	function clearBoard(){
 		for(var i = 0; i < boxarr.length; i++){
 			boxarr[i].innerHTML = '&nbsp;'
-			console.log(boxarr[i])
+			boxarr[i].className = 'box'
 		}
+		whoseTurn.innerHTML = 'X goes first!'
+
 	}
 
-	function alternate(){
+	function alternate(current, element){
+
 		if(current === 'X'){
+
 			newCurrent = 'O';
+			document.querySelector('#whoseTurn').innerHTML = 'O Go!';
+			var classEle = element.className += ' X'
 			return newCurrent;
+
 		} else {
+
 			newCurrent = 'X';
+			document.querySelector('#whoseTurn').innerHTML = 'X Go!';
+			var classEle = element.className += ' O'
 			return newCurrent;
+
 		}
 	}
 
 	function checkWinner(){
-		//if 012 || 345 || 678...
 		var winningcombs = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
 		
 
-		// console.log('entering loop for checkwinner')
 		for (var i = 0; i <winningcombs.length; i++) {
 			
-			// console.log('inside loop checking for a winner')
 			var a = boxarr[winningcombs[i][0]].innerHTML;
 			var b = boxarr[winningcombs[i][1]].innerHTML;
 			var c = boxarr[winningcombs[i][2]].innerHTML;
 
-			// console.log('checking if A === B ', a === b)
-			// console.log('checking if B === C ', b === c)
-			// console.log('value of b', b.trim(), 'type of b', typeof(b), b.length)
-			// console.log('checking if b!==&nbsp;', b !=='&nbsp;')
-
-
 			if ((a===b) && (b===c) && (b !== '&nbsp;')){
-				// console.log('found a winner')
 				return true;
 			}
-			// console.log('no winner yet checking next possible combination')
 		};
-		// console.log('no winner found')
 		return false;
 	}
 
@@ -52,7 +51,6 @@ window.addEventListener('load', function (event) {
 
 
 	function isBoardFull(){
-		console.log(boxarr.length)
 		for (var i = 0; i < boxarr.length; i++) {
 			if (boxarr[i].innerHTML === '&nbsp;'){
 				return false;
@@ -82,16 +80,15 @@ window.addEventListener('load', function (event) {
 
 			if (isEmpty){
 				this.innerHTML = current;
-				current = alternate(current);			
+				current = alternate(current, this);			
 
 				winner = checkWinner();
 				isFull = isBoardFull();
 				if(winner){
-					alert(current +' loses');
-					clearBoard();
+					current === 'X' ? 'O' : 'X';
+					alert((current === 'X' ? 'O' : 'X') +' wins!');
 				} else if(isFull){
 					alert('Tie Game');
-					clearBoard();
 				}
 			}
 
@@ -99,7 +96,10 @@ window.addEventListener('load', function (event) {
 		
 	};
 
-
+	var reset = document.querySelector('#reset')
+	reset.addEventListener('click', function(event){
+		clearBoard();
+	})
 
 
 
