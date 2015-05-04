@@ -24,7 +24,7 @@ window.addEventListener('load', function (event) {
 		// console.log('entering loop for checkwinner')
 		for (var i = 0; i <winningcombs.length; i++) {
 			
-			console.log('inside loop checking for a winner')
+			// console.log('inside loop checking for a winner')
 			var a = boxarr[winningcombs[i][0]].innerHTML;
 			var b = boxarr[winningcombs[i][1]].innerHTML;
 			var c = boxarr[winningcombs[i][2]].innerHTML;
@@ -58,29 +58,24 @@ window.addEventListener('load', function (event) {
 
 	var current = 'X'
 
-	var spaceoccupied = [false, false, false, false, false, false, false, false, false]
 
+	for (var i = 0; i < boxarr.length; i++) {
 
+		boxarr[i].addEventListener('click', function(event){
+			var isEmpty = (this.innerHTML === '&nbsp;');
 
-
-	for (var i = 0; i < 9; i++) {
-		if (spaceoccupied[i] === false){ //notworking
-			console.log(spaceoccupied[i], 'is this space ' + i + ' occupied?')
-
-
-			boxarr[i].addEventListener('click', function(event){
+			if (isEmpty){
 				this.innerHTML = current;
-				current = alternate(current);
-				spaceoccupied[i] = true; //notupdating?
-
+				current = alternate(current);			
 
 				winner = checkWinner();
-					if(winner){
-						alert(current +' loses');
-					}
+				if(winner){
+					alert(current +' loses');
+				}
+			}
 
-			});
-		}
+		});
+		
 	};
 
 
