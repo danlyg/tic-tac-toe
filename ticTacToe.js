@@ -3,7 +3,10 @@ window.addEventListener('load', function (event) {
   // all your code should go in here.
 
 	function clearBoard(){
-		//clears the board
+		for(var i = 0; i < boxarr.length; i++){
+			boxarr[i].innerHTML = '&nbsp;'
+			console.log(boxarr[i])
+		}
 	}
 
 	function alternate(){
@@ -45,6 +48,19 @@ window.addEventListener('load', function (event) {
 		return false;
 	}
 
+
+
+
+	function isBoardFull(){
+		console.log(boxarr.length)
+		for (var i = 0; i < boxarr.length; i++) {
+			if (boxarr[i].innerHTML === '&nbsp;'){
+				return false;
+			}
+		}
+		return true;
+	}
+
 	var boxarr = [document.querySelector('#box1'),
 	document.querySelector('#box2'),
 	document.querySelector('#box3'),
@@ -69,14 +85,21 @@ window.addEventListener('load', function (event) {
 				current = alternate(current);			
 
 				winner = checkWinner();
+				isFull = isBoardFull();
 				if(winner){
 					alert(current +' loses');
+					clearBoard();
+				} else if(isFull){
+					alert('Tie Game');
+					clearBoard();
 				}
 			}
 
 		});
 		
 	};
+
+
 
 
 
