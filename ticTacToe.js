@@ -87,6 +87,9 @@ window.addEventListener('load', function (event) {
 				if(winner){
 					current === 'X' ? 'O' : 'X';
 					alert((current === 'X' ? 'O' : 'X') +' wins!');
+
+					//add break out of the eventlistener so no more moves can be taken until the game is reset
+
 				} else if(isFull){
 					alert('Tie Game');
 				}
